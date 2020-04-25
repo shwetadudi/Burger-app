@@ -109,10 +109,14 @@ export const filters = [
         values: ["available", "out of stock"]
     }
 ];
-export const OrderItems = [
-    {
+export const OrderItems = {
+    items : [
+        {
         name: null,
         quantity: null,
         price: null
-    }
-];
+        }
+    ],
+    showMessage : false,
+    TimeRemaining : true
+};

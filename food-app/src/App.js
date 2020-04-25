@@ -6,7 +6,7 @@ import FoodList from './components/FoodList/FoodList';
 
 import OrderSummary from './components/OrderSummary/OrderSummary';
 
-import { filters, menuItemsData, OrderItems } from "./utils"; 
+import { filters, menuItemsData} from "./utils"; 
 
 const App = () => {
   const [preferenceFilter, setPreferenceFilter] = useState("");
@@ -15,13 +15,15 @@ const App = () => {
   const [availabilityFilter, setAvailabilityFilter] = useState("");
   const [menuItems, setMenuItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
-  const [orderItems, setOrderItems] = useState([]);
+  const [orderItems, setOrderItems] = useState({});
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalNames, settotalNames] = useState(0);
+  const [timeRemaining, settimeRemaining] = useState(0);
 
   // fetch available items
   useEffect(() => {
     setMenuItems(menuItemsData);
     setFilteredItems(menuItemsData);
-    setOrderItems(OrderItems);
   }, []);
 
   useEffect(() => {
@@ -51,16 +53,27 @@ const App = () => {
     "search": setSearchFilter
   }
 const addItem = (e, data) => {
-      console.log(data);
-      setOrderItems({
-        name: data.name,
-        quantity: data.quantity,
-        price: data.price
-    });
-      console.log(orderItems);
+  let cartItems = {...orderItems};
+  if (cartItems[data.id]) {
+    cartItems[data.id].quantity++;
+  } else {
+    cartItems[data.id] = {
+      id: data.id,
+      price: data.price,
+      name: data.name,
+      quantity: 1
     }
-  
-
+  }
+  setOrderItems(cartItems);
+  const totalPrice = Object.keys(cartItems).map(key => parseInt(cartItems[key].price)*parseInt(cartItems[key].quantity)).reduce((a,b) => a+b)
+  const allItems = Object.keys(cartItems).map(key => cartItems[key].name+' X '+cartItems[key].quantity).join(',')
+  setTotalPrice(totalPrice);
+  settotalNames(allItems);
+  settimeRemaining(false);    
+  }
+  const orderSubmit = () => {
+    settimeRemaining(true);    
+  } 
   return (
     <div className="App container">
       <div className="row">
@@ -70,7 +83,7 @@ const addItem = (e, data) => {
         <div className="row">   
         <Filters filters={filters} values={values} methods={methods}/>
         <FoodList addItem={addItem} foodData={filteredItems}/>
-        <OrderSummary/>
+        <OrderSummary orderData={orderItems} allItems={totalNames} totalPrice={totalPrice} orderSubmit={orderSubmit} timeRemaining={timeRemaining}/>
         </div>  
         </div>  
       </div>
