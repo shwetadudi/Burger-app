@@ -10,6 +10,19 @@
 .btn-add{
   float: right;
 }
+.filter li{
+  list-style-type: none;
+  text-align: left;
+}
+.filter p{
+  text-align: left;
+}
+.filter input{
+  margin: 0 10px 0 0;
+}
+h5{
+  text-align: left;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
