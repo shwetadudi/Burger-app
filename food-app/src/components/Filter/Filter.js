@@ -2,7 +2,7 @@ import React from "react";
 
 const Filters = (props) => {
     const { filters, values, methods } = props;
-    return <div className="filters col-md-3">{filters.map((filter) => {
+    return <div className="filters col-md-3"> <h5>Refine Search</h5>{filters.map((filter) => {
         if (filter.values) {
             return <div className="filter"> <strong>{filter.name} : </strong>
                 {

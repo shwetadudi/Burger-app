@@ -1,16 +1,10 @@
 import React from 'react';
 
 const FoodList = (props) => {
-    let foodList = null;
-    let foodArr = [];
-    if(props.foodData){
-        Object.keys(props.foodData.menu).map(foodItems => {
-            foodArr.push(props.foodData.menu[foodItems]);            
-        });
-        foodList = foodArr.map(item => {return(<li key={item.id}>{item.key}</li>)});
-    }
-    return(<div > <p>Food Items list!</p>
-        <ul>
+    const foodList = Object.keys(props.foodData).map(foodItems => <li className="list-group-item" key={props.foodData[foodItems].id}><strong>{props.foodData[foodItems].name} - </strong>{props.foodData[foodItems].currency} {props.foodData[foodItems].price} <button onClick={props.addItem} className="btn-add btn btn btn-outline-info btn-sm">ADD</button></li>);
+    
+    return(<div > <h5>Food Items</h5>
+        <ul className="list-group list-group-flush">
             {foodList}
         </ul>
     </div>)
