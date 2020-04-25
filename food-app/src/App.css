@@ -23,6 +23,12 @@
 h5{
   text-align: left;
 }
+.Header{
+  background: lightgray;
+}
+li.list-group-item {
+  text-align: left;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
