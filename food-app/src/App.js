@@ -1,8 +1,10 @@
 import React,{ useState }  from 'react';
-import logo from './logo.svg';
 import './App.css';
-import MainPage from './main';
 import Filters from "./components/Filter/Filter";
+import Header from './components/Header/Header';
+import Mainpage from './main';
+
+import OrderSummary from './components/OrderSummary/OrderSummary';
 
 const filters = [
   {
@@ -44,14 +46,19 @@ const App = () => {
   }
 
   return (
-    <div className="App">
-      <Filters filters={filters} values={values} methods={methods}/>
-      {`
-        Search string: ${searchFilter}
-        Price Range: ${priceFilter}
-        Preference: ${preferenceFilter}
-        Availability: ${availabilityFilter} 
-      `}
+    <div className="App container">
+      <div className="row">
+      <Header/>
+      <div className='col-md-12'>   
+        <div className="container">
+        <div className="row">   
+        <Filters filters={filters} values={values} methods={methods}/>
+        <Mainpage/>
+        <OrderSummary/>
+        </div>  
+        </div>  
+      </div>
+    </div>
     </div>
   );
 }

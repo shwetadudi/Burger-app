@@ -9,7 +9,7 @@ const FoodList = (props) => {
         });
         foodList = foodArr.map(item => {return(<li key={item.id}>{item.key}</li>)});
     }
-    return(<div>
+    return(<div > <p>Food Items list!</p>
         <ul>
             {foodList}
         </ul>

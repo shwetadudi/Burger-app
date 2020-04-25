@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-import SearchNav from './components/SearchNav/SearchNav';
 import FoodList from './components/FoodList/FoodList';
 import axios from 'axios';
 
@@ -15,8 +13,7 @@ class Mainpage extends Component{
     }
     render(){
         return(
-            <div>
-                <SearchNav/>
+            <div className="col-md-6">
                 <FoodList foodData={this.state.loadedItems}/>
             </div>            
         );
