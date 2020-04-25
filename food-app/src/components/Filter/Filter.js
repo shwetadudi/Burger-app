@@ -10,11 +10,7 @@ const Filters = (props) => {
                 }
             </ul></div>
         }
-        return (<div><input onChange={(e) => methods[filter.name](e.target.value)} placeholder="Search" type="text" name={filter.name} value={values[filter.name]}/>
-        <p>Search string: {methods.searchFilter}
-        Price Range: {methods.priceFilter}
-        Preference: {methods.preferenceFilter}
-        Availability: {methods.availabilityFilter}</p></div>);
+        return (<div><input onChange={(e) => methods[filter.name](e.target.value)} placeholder="Search" type="text" name={filter.name} value={values[filter.name]}/></div>);
     })}</div>
 }
 
